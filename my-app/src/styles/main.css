@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+}
+
+.commit-box {
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    font-size: 1.5rem;
+    padding: 0 20px;
+}
+
+.commit-box h1 {
+    margin-left: 30px;
+}
+
+.repo-titlebox1 {
+    width: 95%;
+    margin: 80px auto 0 auto;
+    height: 60px;
+    border-bottom: 1px solid white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 0 10px;
+}
+
+.innerbox ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    list-style: disc;
+    gap: 20px;
+    margin: 30px 80px;
+    padding-left: 20px;
+}
+
+.innerbox ul li {
+    font-size: 1.5rem;
+    word-break: break-word;
+}
+
+.repo-link-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    text-decoration: none;
+    padding: 0;
+}
+
+.repo-link-button:hover {
+    color: yellow;
+}
+
+.para {
+    font-size: 2rem;
+    margin: 50px 20px;
+}
+@media (max-width: 768px) {
+    .commit-box {
+        flex-direction: column;
+        justify-content: center;
+        height: auto;
+        text-align: center;
+        padding: 20px;
+        font-size: 1.2rem;
+    }
+    .para{
+        font-size: 1rem;
+    }
+    .commit-box h1 {
+        margin-left: 0;
+    }
+
+    .repo-titlebox1 {
+        flex-direction: column;
+        height: auto;
+        font-size: 1.2rem;
+        padding: 15px;
+        text-align: center;
+    }
+    .innerbox{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .innerbox ul {
+        margin: 20px;
+        padding-left: 15px;
+    }
+
+    .innerbox ul li {
+        font-size: 1.2rem;
+    }
+
+    .para {
+        font-size: 1.5rem;
+        margin: 30px 15px;
+        text-align: center;
+    }
+}
+

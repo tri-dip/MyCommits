@@ -1,0 +1,115 @@
+body {
+  background-color: black;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+}
+
+.commit {
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  font-size: 1.5rem;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.commit h1 {
+  margin-left: 30px;
+}
+
+.commit-titlebox1 {
+  width: 95%;
+  margin: 50px auto 0 auto;
+  height: 80px;
+  border-bottom: 1px solid white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  padding: 0 10px;
+}
+
+.paracommit {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+  color: #ffffff;
+  padding: 0 15px;
+}
+
+.commitul ul {
+  list-style: none;
+  padding: 0;
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+.commitul ul li {
+  background-color: white;
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s;
+}
+
+.commitul ul li:hover {
+  transform: translateY(-3px);
+}
+
+.commitul ul li p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+  color: #222;
+}
+
+.commitul ul li strong {
+  color: #222;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .commit {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+    font-size: 1.2rem;
+  }
+
+  .commit h1 {
+    margin-left: 0;
+  }
+
+  .commit-titlebox1 {
+    flex-direction: column;
+    height: auto;
+    font-size: 1rem;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .paracommit {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+  .commitul ul{
+    max-width: 87%;
+  }
+  .commitul ul li {
+    padding: 0.8rem 1rem;
+  }
+
+  .commitul ul li p {
+    font-size: 0.95rem;
+  }
+
+  .commitul ul li strong {
+    font-size: 1rem;
+  }
+}
+
