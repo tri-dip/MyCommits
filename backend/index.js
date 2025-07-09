@@ -8,11 +8,14 @@ import axios from "axios";
 import cors from "cors";
 import pg from "pg";
 import connectPgSimple from "connect-pg-simple";
+import path from "path";
+import { fileURLToPath } from "url";
 
 
 env.config();
 const app = express();
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const { Pool } = pg;
 
 const db = new Pool({
@@ -27,6 +30,7 @@ const PORT = process.env.PORT || 5000;
 const URL = process.env.FRONTENDURL || "http://localhost:3000";
 const BURL = process.env.BACKENDURL || "http://localhost:5000";
 
+app.use(express.static(path.join(__dirname, "../my-app/build")));
 app.use(cors({
   origin: URL,
   credentials: true
@@ -168,6 +172,9 @@ passport.deserializeUser(async (id,cb)=>{
   }
   
 })
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../my-app/build/index.html"));
+});
 app.listen(PORT, () => {
   console.log(`Backend running on ${PORT}`);
 });
