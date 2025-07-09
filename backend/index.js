@@ -30,7 +30,6 @@ const PORT = process.env.PORT || 5000;
 const URL = process.env.FRONTENDURL || "http://localhost:3000";
 const BURL = process.env.BACKENDURL || "http://localhost:5000";
 
-app.use(express.static(path.join(__dirname, "../my-app/build")));
 app.use(cors({
   origin: URL,
   credentials: true
@@ -172,6 +171,7 @@ passport.deserializeUser(async (id,cb)=>{
   }
   
 })
+app.use(express.static(path.join(__dirname, "../my-app/build")));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../my-app/build/index.html"));
 });
