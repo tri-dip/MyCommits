@@ -7,7 +7,8 @@ import session from "express-session";
 import axios from "axios";
 import cors from "cors";
 import pg from "pg";
-import pgSession from "connect-pg-simple";
+import connectPgSimple from "connect-pg-simple";
+
 
 env.config();
 const app = express();
@@ -33,10 +34,12 @@ app.use(cors({
 app.use(express.json());
 const isProd = process.env.NODE_ENV === "production";
 
+const PgSession = connectPgSimple(session);
+
 app.use(session({
-  store: new (pgSession(session))({
+  store: new PgSession({
     pool: db,
-    tableName: 'session' // this will auto-create if not exists
+    tableName: 'session'
   }),
   secret: process.env.Secret,
   resave: false,
@@ -47,6 +50,7 @@ app.use(session({
     sameSite: isProd ? "none" : "lax"
   }
 }));
+
 
 
 
