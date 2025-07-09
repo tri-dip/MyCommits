@@ -28,16 +28,19 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
+const isProd = process.env.NODE_ENV === "production";
+
 app.use(session({
   secret: process.env.Secret,
   resave: false,
   saveUninitialized: false,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24,
-    sameSite: "None",     
-    secure: true          
+    sameSite: isProd ? "None" : "Lax",
+    secure: isProd,
   }
 }));
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
