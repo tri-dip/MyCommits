@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
 import "../styles/commit.css";
-const URL = process.env.BACKENDURL ||"http://localhost:5000";
+const URL = process.env.REACT_APP_BACKENDURL ||"http://localhost:5000";
 
 function Commit() {
     const { repoName } = useParams();
