@@ -7,6 +7,7 @@ import session from "express-session";
 import axios from "axios";
 import cors from "cors";
 import pg from "pg";
+import pgSession from "connect-pg-simple";
 
 env.config();
 const app = express();
@@ -31,16 +32,22 @@ app.use(cors({
 }));
 app.use(express.json());
 const isProd = process.env.NODE_ENV === "production";
+
 app.use(session({
+  store: new (pgSession(session))({
+    pool: db,
+    tableName: 'session' // this will auto-create if not exists
+  }),
   secret: process.env.Secret,
   resave: false,
   saveUninitialized: false,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24,
-    sameSite: isProd ? "None" : "Lax",  // Required for cross-origin in HTTPS
-    secure: isProd                     // Cookie only over HTTPS in production
+    secure: isProd,
+    sameSite: isProd ? "none" : "lax"
   }
 }));
+
 
 
 
