@@ -34,7 +34,6 @@ const URL = process.env.FRONTENDURL || "http://localhost:3000";
 const BURL = process.env.BACKENDURL || "http://localhost:5000";
 const isProd = process.env.NODE_ENV === "production";
 
-// Middlewares
 app.use(cors({
   origin: URL,
   credentials: true,
@@ -65,7 +64,6 @@ function ensureAuthenticated(req, res, next) {
   res.status(401).json({ error: "Not authenticated" });
 }
 
-// Auth Routes
 app.get("/auth/github", passport.authenticate("github", { scope: ["repo"] }));
 
 app.get("/github/auth/callback", passport.authenticate("github", {
@@ -81,7 +79,6 @@ app.get("/login", (req, res) => {
   return res.redirect(`${URL}/login`);
 });
 
-// API Routes
 app.get("/api/check-auth", (req, res) => {
   res.json({ authenticated: req.isAuthenticated() });
 });
@@ -134,7 +131,6 @@ app.post("/logout", (req, res) => {
   });
 });
 
-// Passport setup
 passport.use(new GitHubStrategy({
   clientID: process.env.Client_id,
   clientSecret: process.env.Client_secret,
@@ -172,8 +168,9 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-// Serve frontend build
+
 app.use(express.static(path.join(__dirname, "../my-app/build")));
+
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../my-app/build/index.html"));
 });
