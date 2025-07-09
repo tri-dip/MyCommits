@@ -53,7 +53,7 @@ app.get("/api/check-auth", (req, res) => {
 
 app.get("/auth/github", passport.authenticate("github", { scope: ['repo'] }));
 app.get("/github/auth/callback", passport.authenticate("github", {
-  successRedirect: "/dashboard",
+  successRedirect: URL,
   failureRedirect: "/login"
 }));
 app.get("/dashboard", ensureauthenticated, (req, res) => {
