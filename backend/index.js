@@ -66,7 +66,7 @@ app.get("/dashboard", ensureauthenticated, (req, res) => {
 app.get("/login", (req, res) => {
   return res.redirect(`${URL}/login`);
 });
-app.get("/github/repo",async(req,res)=>{
+app.get("/github/repo",ensureauthenticated,async(req,res)=>{
   const user = req.user.username;
   const accesstoken = req.user.accesstoken;
   try{
@@ -83,7 +83,7 @@ app.get("/github/repo",async(req,res)=>{
     res.status(500).json({ error: "Failed to fetch repositories" });
   }
 })
-app.get("/github/repo/commit/:repoName",async(req,res)=>{
+app.get("/github/repo/commit/:repoName",ensureauthenticated,async(req,res)=>{
   const repo = req.params.repoName;
   const user = req.user.username;
   const accesstoken = req.user.accesstoken;
