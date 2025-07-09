@@ -6,6 +6,7 @@ function Home(){
         window.location.href = `${URL}/auth/github`; 
       };
     return (
+        
         <div className="box">
             <div className="box1"><h1>MyCommits</h1></div>
             <div className="box2">
