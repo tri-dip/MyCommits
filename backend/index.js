@@ -44,8 +44,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 function ensureauthenticated(req, res, next) {
   if (req.isAuthenticated()) return next();
-  res.redirect("/login");
+  res.status(401).json({ error: "Not authenticated" });
 }
+
 app.get("/api/check-auth", (req, res) => {
   if (req.isAuthenticated()) {
     res.json({ authenticated: true });
