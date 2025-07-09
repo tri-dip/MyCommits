@@ -1,27 +1,27 @@
 import express from "express";
 import bodyParser from "body-parser";
-import pg from "pg";
 import env from "dotenv";
 import passport from "passport";
 import GitHubStrategy from "passport-github2";
 import session from "express-session";
 import axios from "axios";
 import cors from "cors";
+import pg from "pg";
 
-const app = express();
-const PORT = process.env.PORT || 5000;
-const URL = "http://localhost:3000";
 env.config();
+const app = express();
 
-const db = new pg.Client({
-  user:"postgres",
-  host:"localhost",
-  port:process.env.PGPORT,
-  password:"Tridip@2006",
-  database:"commitdb",
-  
+const { Pool } = pg;
+
+const db = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false, 
+  },
 });
-db.connect();
+const PORT = process.env.PORT || 5000;
+const URL = process.env.FRONTENDURL || "http://localhost:3000";
+const BURL = process.env.BACKENDURL || "http://localhost:5000";
 
 app.use(cors({
   origin: URL,
@@ -114,7 +114,7 @@ app.post("/logout", (req, res) => {
 passport.use(new GitHubStrategy({
   clientID: process.env.Client_id,
   clientSecret: process.env.Client_secret,
-  callbackURL: `http://localhost:5000/github/auth/callback`
+  callbackURL: `${BURL}/github/auth/callback`
 },
   async function (accessToken, refreshToken, profile, done) {
     const username = profile.username;

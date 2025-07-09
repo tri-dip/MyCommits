@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
 import '../styles/main.css';
-const URL = "http://localhost:5000";
+const URL = process.env.BACKENDURL ||"http://localhost:5000";
 function Repo() {
     const navigate = useNavigate();
     const [repos, setRepos] = useState([]);

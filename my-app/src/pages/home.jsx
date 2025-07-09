@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/home.css';
-const URL = "http://localhost:5000";
+const URL = process.env.BACKENDURL ||"http://localhost:5000";
 function Home(){
     const handleLogin = () => {
         window.location.href = `${URL}/auth/github`; 
